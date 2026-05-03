@@ -4,13 +4,12 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import courseData from "@/data/data.json";
-import { CourseData } from "@/types/course";
 
-const typedData = courseData as CourseData;
+const typedData = courseData;
 
 export default function HomePage() {
   const router = useRouter();
-  const [modal, setModal] = useState<{ open: boolean; lessonId: number }>({
+  const [modal, setModal] = useState({
     open: false,
     lessonId: 1
   });
@@ -18,7 +17,7 @@ export default function HomePage() {
 
   const lessons = useMemo(() => typedData.lessons, []);
 
-  const isLessonUnlocked = (lessonId: number) => {
+  const isLessonUnlocked = (lessonId) => {
     if (lessonId === 1) {
       return true;
     }
@@ -28,7 +27,7 @@ export default function HomePage() {
     return localStorage.getItem(`lesson_${lessonId - 1}_complete`) === "true";
   };
 
-  const handleLessonClick = (lessonId: number) => {
+  const handleLessonClick = (lessonId) => {
     if (!isLessonUnlocked(lessonId)) {
       setModal({ open: true, lessonId });
       return;

@@ -16,6 +16,7 @@ export default function Navigation() {
   const [currentHash, setCurrentHash] = useState("");
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setCurrentHash(window.location.hash);
     const updateHash = () => setCurrentHash(window.location.hash);
     window.addEventListener("hashchange", updateHash);

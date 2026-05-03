@@ -1,17 +1,12 @@
-import type { Metadata } from "next";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "منصة تعليم البرمجة",
   description: "صفحة تعليمية تفاعلية لدروس البرمجة الأساسية"
 };
 
-export default function RootLayout({
-  children
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }) {
   return (
     <html lang="ar" dir="rtl">
       <body className="min-h-screen bg-slate-950 text-slate-100">

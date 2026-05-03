@@ -4,17 +4,16 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import courseData from "@/data/data.json";
-import { CourseData } from "@/types/course";
 
-const typedData = courseData as CourseData;
+const typedData = courseData;
 
 export default function FinalExamPage() {
   const router = useRouter();
   const questions = useMemo(() => typedData.finalExam.questions, []);
-  const [isAllowed, setIsAllowed] = useState<boolean | null>(null);
+  const [isAllowed, setIsAllowed] = useState(null);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [selectedOption, setSelectedOption] = useState(null);
 
   useEffect(() => {
     const complete = typedData.lessons.every(
@@ -25,6 +24,7 @@ export default function FinalExamPage() {
       router.replace("/");
       return;
     }
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsAllowed(true);
   }, [router]);
 

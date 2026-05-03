@@ -6,8 +6,8 @@ import { useEffect, useState } from "react";
 
 export default function ResultsPage() {
   const router = useRouter();
-  const [score, setScore] = useState<number | null>(null);
-  const [total, setTotal] = useState<number | null>(null);
+  const [score, setScore] = useState(null);
+  const [total, setTotal] = useState(null);
 
   useEffect(() => {
     const lessonsComplete = [1, 2, 3, 4].every(
@@ -22,6 +22,7 @@ export default function ResultsPage() {
       return;
     }
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setScore(Number(savedScore));
     setTotal(Number(savedTotal));
   }, [router]);

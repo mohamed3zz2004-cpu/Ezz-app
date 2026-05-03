@@ -4,9 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useParams, useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import courseData from "@/data/data.json";
-import { CourseData } from "@/types/course";
 
-const typedData = courseData as CourseData;
+const typedData = courseData;
 
 const constantsVisuals = [
   {
@@ -45,7 +44,7 @@ const conditionalVisuals = [
 ];
 
 export default function LessonPage() {
-  const params = useParams<{ id: string }>();
+  const params = useParams();
   const router = useRouter();
   const lessonId = Number(params.id);
 
@@ -57,8 +56,8 @@ export default function LessonPage() {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [isDone, setIsDone] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
-  const [showLockPopup, setShowLockPopup] = useState<boolean>(() => {
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [showLockPopup, setShowLockPopup] = useState(() => {
     if (typeof window === "undefined" || lessonId <= 1) {
       return false;
     }
@@ -75,7 +74,7 @@ export default function LessonPage() {
 
   const currentQuestion = lesson.quiz[questionIndex];
 
-  const handleAnswer = (option: string) => {
+  const handleAnswer = (option) => {
     setSelectedOption(option);
   };
 
