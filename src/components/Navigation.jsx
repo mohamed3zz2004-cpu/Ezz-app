@@ -6,18 +6,22 @@ import { usePathname } from "next/navigation";
 
 const navItems = [
   { label: "الصفحة الرئيسية", href: "/" },
+  { label: "دليل الطالب", href: "/instructions" },
+  { label: "الاختبار القبلي", href: "/pre-test" },
   { label: "الدروس التعليمية", href: "/#lessons" },
+  { label: "الأهداف", href: "/#learning-objectives" },
   { label: "تواصل معنا", href: "/contact" },
   { label: "نبذة عن الموقع", href: "/about" }
 ];
 
 export default function Navigation() {
   const pathname = usePathname();
-  const [currentHash, setCurrentHash] = useState("");
+  const [currentHash, setCurrentHash] = useState(() => {
+    if (typeof window === "undefined") return "";
+    return window.location.hash;
+  });
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setCurrentHash(window.location.hash);
     const updateHash = () => setCurrentHash(window.location.hash);
     window.addEventListener("hashchange", updateHash);
     return () => window.removeEventListener("hashchange", updateHash);
@@ -32,7 +36,10 @@ export default function Navigation() {
             const isActive =
               item.href === "/#lessons"
                 ? pathname === "/" && currentHash === "#lessons"
-                : pathname === item.href;
+                : item.href.startsWith("/#")
+                  ? pathname === "/" && currentHash === item.href.slice(1)
+                  : pathname === item.href;
+
             return (
               <Link
                 key={item.href}

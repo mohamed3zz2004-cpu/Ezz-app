@@ -14,11 +14,14 @@ export default function FinalExamPage() {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
+  const [answers, setAnswers] = useState([]);
 
   useEffect(() => {
-    const complete = typedData.lessons.every(
-      (lesson) => localStorage.getItem(`lesson_${lesson.id}_complete`) === "true"
-    );
+    const complete =
+      localStorage.getItem("pre_test_complete") === "true" &&
+      typedData.lessons.every(
+        (lesson) => localStorage.getItem(`lesson_${lesson.id}_complete`) === "true"
+      );
 
     if (!complete) {
       router.replace("/");
@@ -31,7 +34,7 @@ export default function FinalExamPage() {
   if (!isAllowed) {
     return (
       <main className="flex min-h-screen items-center justify-center">
-        <p className="text-lg font-semibold text-slate-700">جاري التحقق من أهلية الاختبار...</p>
+        <p className="text-lg font-semibold text-slate-100">جاري التحقق من أهلية الاختبار...</p>
       </main>
     );
   }
@@ -46,12 +49,15 @@ export default function FinalExamPage() {
 
     const isCorrect = selectedOption === currentQuestion.correctAnswer;
     const newScore = isCorrect ? score + 1 : score;
+    const newAnswers = [...answers, selectedOption];
     setScore(newScore);
+    setAnswers(newAnswers);
     setSelectedOption(null);
 
     if (questionIndex === questions.length - 1) {
       localStorage.setItem("final_exam_score", String(newScore));
       localStorage.setItem("final_exam_total", String(questions.length));
+      localStorage.setItem("final_exam_answers", JSON.stringify(newAnswers));
       localStorage.setItem("final_exam_complete", "true");
       router.push("/results");
       return;
