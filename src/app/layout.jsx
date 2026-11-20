@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
         <div className="flex min-h-screen flex-col">
           {children}
           <footer className="mt-10 border-t border-slate-800 bg-slate-900/95 px-6 py-5 text-center text-sm text-slate-400">
-            تم العمل بواسطة محمد عز الدين - تحت إشراف: أ.م.د خالد محمود حسين نوفل، د. محمد مسعد جاد علي
+            تم العمل بواسطة بلال محمد احمد - تحت إشراف: د. ياسر
           </footer>
         </div>
       </body>

@@ -12,7 +12,7 @@ export default function ContactPage() {
           <div className="mt-10 grid gap-8 md:grid-cols-2">
             {/* Email Section */}
             <a
-              href="mailto:Mohamed3zz2004@gmail.com"
+              href="mailto:BilalMohamedAhmed@gmail.com"
               className="group rounded-3xl border border-slate-800 bg-slate-950/80 p-8 transition hover:border-emerald-400 hover:bg-slate-900/95"
             >
               <div className="flex items-center gap-4">
@@ -20,7 +20,7 @@ export default function ContactPage() {
                 <div>
                   <h2 className="text-xl font-semibold text-emerald-400">البريد الإلكتروني</h2>
                   <p className="mt-2 text-slate-200 group-hover:text-emerald-300 transition">
-                    Mohamed3zz2004@gmail.com
+                    BilalMohamedAhmed@gmail.com
                   </p>
                 </div>
               </div>
@@ -28,7 +28,7 @@ export default function ContactPage() {
 
             {/* Phone Section */}
             <a
-              href="tel:+201126065803"
+              href="tel:+201018310664"
               className="group rounded-3xl border border-slate-800 bg-slate-950/80 p-8 transition hover:border-emerald-400 hover:bg-slate-900/95"
             >
               <div className="flex items-center gap-4">
@@ -36,7 +36,7 @@ export default function ContactPage() {
                 <div>
                   <h2 className="text-xl font-semibold text-emerald-400">رقم الهاتف</h2>
                   <p className="mt-2 text-slate-200 group-hover:text-emerald-300 transition">
-                    +201126065803
+                    01018310664
                   </p>
                 </div>
               </div>
